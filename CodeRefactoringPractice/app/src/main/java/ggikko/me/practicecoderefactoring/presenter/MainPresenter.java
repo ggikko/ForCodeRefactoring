@@ -12,7 +12,7 @@ import javax.inject.Singleton;
 
 public class MainPresenter {
 
-    public void sayMain(){
-        Log.e("ggikko", "main!");
+    public void sayMain(String string){
+        Log.e("ggikko", "main! " + string);
     }
 }
