@@ -40,11 +40,6 @@ public class MainActivity extends BaseActivity {
     private void setUp() {
         ButterKnife.bind(this); // binding
         injectViews(customButton, customImageView, customLinearLayout); // inject
-        
         setVisible(true, customButton, customImageView, customLinearLayout); //flag에 따라 visibility 설정
-
-        //또는 명시적으로 나누거나..
-//        setVisibilityVisible(customButton, customImageView, customLinearLayout); //visible
-//        setVisibilityGone(customButton, customImageView, customLinearLayout); //gone
     }
 }
