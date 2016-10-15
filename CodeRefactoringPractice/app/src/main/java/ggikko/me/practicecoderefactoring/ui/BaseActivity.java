@@ -24,6 +24,7 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         buildComponent();
+
         injectActivity();
     }
 
@@ -31,16 +32,19 @@ public class BaseActivity extends AppCompatActivity {
         mainComponent = DaggerMainComponent.builder().mainModule(new MainModule()).build();
     }
 
+    //activity inject
     private void injectActivity() {
         ActivityInjector injector = new ActivityInjector(mainComponent);
         injector.inject(this);
     }
 
+    //custom view inject
     protected void injectViews(View... views) {
         CustomViewInjector customViewInjector = new CustomViewInjector(mainComponent);
         customViewInjector.inject(views);
     }
 
+    //이것을 사용해도 되고
     protected void setVisible(boolean isVisible, View... views) {
         if (isVisible) {
             for (View view : views) view.setVisibility(View.VISIBLE);
@@ -49,6 +53,7 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
+    //명시적으로 2개를 나눠도 좋고
     protected void setVisibilityVisible(View... views) {
         for (View view : views) view.setVisibility(View.VISIBLE);
     }
