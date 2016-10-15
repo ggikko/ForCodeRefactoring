@@ -36,12 +36,26 @@ public class BaseActivity extends AppCompatActivity {
         injector.inject(this);
     }
 
-    protected void injectViews(View... views){
+    protected void injectViews(View... views) {
         CustomViewInjector customViewInjector = new CustomViewInjector(mainComponent);
         customViewInjector.inject(views);
     }
 
-    protected void setVisibleGone(View... views){
-        for(View view : views) view.setVisibility(View.GONE);
+    protected void setVisible(boolean isVisible, View... views) {
+        if (isVisible) {
+            for (View view : views) view.setVisibility(View.VISIBLE);
+        } else {
+            for (View view : views) view.setVisibility(View.GONE);
+        }
     }
+
+    protected void setVisibilityVisible(View... views) {
+        for (View view : views) view.setVisibility(View.VISIBLE);
+    }
+
+    protected void setVisibilityGone(View... views) {
+        for (View view : views) view.setVisibility(View.GONE);
+    }
+
+
 }

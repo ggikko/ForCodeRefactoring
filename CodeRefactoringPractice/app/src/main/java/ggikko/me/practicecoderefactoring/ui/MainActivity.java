@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import ggikko.me.practicecoderefactoring.R;
 import ggikko.me.practicecoderefactoring.presenter.MainPresenter;
 import ggikko.me.practicecoderefactoring.presenter.OddPresenter;
@@ -24,17 +25,26 @@ public class MainActivity extends BaseActivity {
     @Inject SubPresenter subPresenter;
     @Inject OddPresenter oddPresenter;
 
+    @OnClick(R.id.customButton)
+    void clickCustomButton(){
+        customButton.sayIt(); //test
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setUp();
+    }
 
+    private void setUp() {
         ButterKnife.bind(this); // binding
-
         injectViews(customButton, customImageView, customLinearLayout); // inject
+        
+        setVisible(true, customButton, customImageView, customLinearLayout); //flag에 따라 visibility 설정
 
-        customButton.sayIt(); //test
-
-        setVisibleGone(customButton, customImageView, customLinearLayout); //visibility
+        //또는 명시적으로 나누거나..
+//        setVisibilityVisible(customButton, customImageView, customLinearLayout); //visible
+//        setVisibilityGone(customButton, customImageView, customLinearLayout); //gone
     }
 }
